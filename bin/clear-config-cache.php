@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-chdir(__DIR__ . '/mezzio-skeleton/');
+chdir(__DIR__ . '/mezzio/');
 
 require 'vendor/autoload.php';
 

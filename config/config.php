@@ -14,15 +14,43 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \User\ConfigProvider::class,
+    \Laminas\I18n\ConfigProvider::class,
+    \Laminas\Form\ConfigProvider::class,
+    \Laminas\Hydrator\ConfigProvider::class,
+    \Laminas\InputFilter\ConfigProvider::class,
+    \Laminas\Filter\ConfigProvider::class,
+    \Laminas\Db\ConfigProvider::class,
+    \Mezzio\Authentication\LaminasAuthentication\ConfigProvider::class,
+    \Mezzio\Flash\ConfigProvider::class,
+    \Mezzio\Csrf\ConfigProvider::class,
+    \Mezzio\Authorization\Rbac\ConfigProvider::class,
+    \Mezzio\Authorization\Acl\ConfigProvider::class,
+    \Mezzio\Authorization\ConfigProvider::class,
+    \Mezzio\Authentication\Session\ConfigProvider::class,
+    \Mezzio\Session\ConfigProvider::class,
+    \Mezzio\Authentication\Basic\ConfigProvider::class,
+    \Mezzio\Authentication\ConfigProvider::class,
+    \Mezzio\Tooling\ConfigProvider::class,
+    \Mezzio\LaminasView\ConfigProvider::class,
     \Mezzio\Helper\ConfigProvider::class,
-    \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
+    \Mezzio\Router\LaminasRouter\ConfigProvider::class,
+    \Laminas\Router\ConfigProvider::class,
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
+    \Laminas\Validator\ConfigProvider::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
     ConfigProvider::class,
     \Mezzio\ConfigProvider::class,
     \Mezzio\Router\ConfigProvider::class,
     \Laminas\Diactoros\ConfigProvider::class,
+
+    // Swoole config to overwrite some services (if installed)
+    class_exists(\Mezzio\Swoole\ConfigProvider::class)
+        ? \Mezzio\Swoole\ConfigProvider::class
+        : function (): array {
+            return [];
+        },
 
     // Default App module config
     App\ConfigProvider::class,
