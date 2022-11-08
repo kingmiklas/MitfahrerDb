@@ -12,8 +12,6 @@ final class ForgotPasswordHandlerFactory
 {
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
-        $template = $container->get(TemplateRendererInterface::class);
-
-        return new ForgotPasswordHandler($template);
+        return new ForgotPasswordHandler($container->get(TemplateRendererInterface::class));
     }
 }

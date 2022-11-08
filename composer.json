@@ -44,6 +44,7 @@
     },
     "require": {
         "php": "^7.4 || ~8.0.0 || ~8.1.0",
+        "ext-pdo": "*",
         "composer/package-versions-deprecated": "^1.10.99",
         "jsoumelidis/zend-sf-di-config": "^0.5.1",
         "laminas/laminas-component-installer": "^2.6",
@@ -77,8 +78,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App/src/",
-            "User\\": "src/User/src/"
+            "App\\": "src/App/src/"
         }
     },
     "autoload-dev": {
