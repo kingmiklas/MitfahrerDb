@@ -9,7 +9,7 @@ use PDOException;
 
 class PDOHandler
 {
-    public function handle(): PDO
+    public function create(): PDO
     {
         try {
             $conn = new PDO("mysql:host=127.0.0.1:3329;dbname=MitfahrerDB", 'root', '');
