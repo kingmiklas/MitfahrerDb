@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Whoops\Handler\Handler;
-use Whoops\Handler\Handler\HomePageHandler;
-
 /**
  * The configuration provider for the App module
  *
@@ -38,7 +35,7 @@ class ConfigProvider
                 Handler\PingHandler::class => Handler\PingHandler::class,
             ],
             'factories'  => [
-                HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
                 Handler\LoginHandler::class => Handler\LoginHandlerFactory::class
             ],
         ];
