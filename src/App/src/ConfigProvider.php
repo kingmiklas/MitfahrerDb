@@ -32,10 +32,9 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
+                Handler\PDOHandler::class => Handler\PDOHandler::class,
             ],
             'factories'  => [
-                Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
                 Handler\LoginHandler::class => Handler\LoginHandlerFactory::class,
                 Handler\RegisterHandler::class => Handler\RegisterHandlerFactory::class,
                 Handler\ForgotPasswordHandler::class => Handler\ForgotPasswordHandlerFactory::class,
