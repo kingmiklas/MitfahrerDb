@@ -39,7 +39,9 @@ class RegisterSubmitHandler implements RequestHandlerInterface
 
         $stmt = $pdo->prepare("SELECT cEmail from tUser where cEmail = :email");
         $stmt->execute(['email' => $email]);
-        $existingEmail = $stmt->fetch();
+        /** @var array $existingEmailArray */
+        $existingEmailArray = $stmt->fetch();
+        $existingEmail = (string)$existingEmailArray[0];
 
         if ($existingEmail === $email) {
             return new HtmlResponse($this->template->render('app::register-page', ['error' => 'Account Existiert bereits']));
@@ -53,8 +55,7 @@ class RegisterSubmitHandler implements RequestHandlerInterface
 
         /** @var array $userIdArray */
         $userIdArray = $stmt->fetch();
-        /** @var int $userId */
-        $userId = $userIdArray[0];
+        $userId = (int)$userIdArray[0];
 
         $stmt = $pdo->prepare("INSERT INTO tPasswort (cPassword, kUser)
         VALUES (:password,:userId)");

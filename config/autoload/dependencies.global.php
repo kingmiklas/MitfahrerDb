@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+use Laminas\Stratigility\Middleware\ErrorHandler;
+use Mezzio\Container\ErrorHandlerFactory;
+use Mezzio\Middleware;
+use Mezzio\Container;
+
 return [
     // Provides application-wide services.
     // We recommend using fully-qualified class names whenever possible as
@@ -20,6 +25,9 @@ return [
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
+            ErrorHandler::class => ErrorHandlerFactory::class,
+            Middleware\WhoopsErrorResponseGenerator::class => Container\WhoopsErrorResponseGeneratorFactory::class,
+            Middleware\ErrorResponseGenerator::class => Container\ErrorResponseGeneratorFactory::class,
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
         ],
     ],
