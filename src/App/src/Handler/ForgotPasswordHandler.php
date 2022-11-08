@@ -12,8 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ForgotPasswordHandler implements RequestHandlerInterface
 {
-    /** @var null|TemplateRendererInterface */
-    private $template;
+    private ?TemplateRendererInterface $template;
 
     public function __construct(
         TemplateRendererInterface $template

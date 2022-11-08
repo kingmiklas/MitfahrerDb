@@ -12,7 +12,7 @@ class PDOHandler
     public function handle(): PDO
     {
         try {
-            $conn = new PDO("mysql:host=localhost;dbname=mitfahrerDB", 'root', '');
+            $conn = new PDO("mysql:host=localhost;dbname=MitfahrerDB", 'root', '');
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully";

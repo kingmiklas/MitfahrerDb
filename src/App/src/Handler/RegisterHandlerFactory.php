@@ -12,8 +12,6 @@ final class RegisterHandlerFactory
 {
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
-        $template = $container->get(TemplateRendererInterface::class);
-
-        return new RegisterHandler($template);
+        return new RegisterHandler($container->get(TemplateRendererInterface::class));
     }
 }
