@@ -136,7 +136,9 @@ return [
             'Mezzio\\Router\\Middleware\\RouteMiddleware' => 'Mezzio\\Router\\Middleware\\RouteMiddlewareFactory',
             'Mezzio\\Router\\RouteCollector' => 'Mezzio\\Router\\RouteCollectorFactory',
             'App\\Handler\\HomePageHandler' => 'App\\Handler\\HomePageHandlerFactory',
-            'App\\Handler\\LoginHandler' => 'App\\Handler\\LoginHandlerFactory'
+            'App\\Handler\\LoginHandler' => 'App\\Handler\\LoginHandlerFactory',
+            'App\\Handler\\RegisterHandler' => 'App\\Handler\\RegisterHandlerFactory',
+            'App\\Handler\\ForgotPasswordHandler' => 'App\\Handler\\ForgotPasswordHandlerFactory',
         ],
         'abstract_factories' => [
             'Laminas\\Form\\FormAbstractServiceFactory',
