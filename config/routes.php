@@ -41,6 +41,7 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/', App\Handler\LoginHandler::class, 'home');
     $app->get('/login', App\Handler\LoginHandler::class, 'login');
     $app->get('/register', App\Handler\RegisterHandler::class, 'register.get');
+    $app->get('/board', App\Handler\BoardHandler::class, 'board');
     $app->post('/register', App\Handler\RegisterSubmitHandler::class, 'register.post');
     $app->get('/password', App\Handler\ForgotPasswordHandler::class, 'password');
 };
