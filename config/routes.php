@@ -40,6 +40,7 @@ use Psr\Container\ContainerInterface;
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
     $app->get('/', App\Handler\LoginHandler::class, 'home');
     $app->get('/login', App\Handler\LoginHandler::class, 'login');
-    $app->get('/register', App\Handler\RegisterHandler::class, 'register');
+    $app->get('/register', App\Handler\RegisterHandler::class, 'register.get');
+    $app->post('/register', App\Handler\RegisterSubmitHandler::class, 'register.post');
     $app->get('/password', App\Handler\ForgotPasswordHandler::class, 'password');
 };

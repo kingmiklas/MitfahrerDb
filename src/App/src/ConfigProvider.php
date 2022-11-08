@@ -37,6 +37,7 @@ class ConfigProvider
             'factories'  => [
                 Handler\LoginHandler::class => Handler\LoginHandlerFactory::class,
                 Handler\RegisterHandler::class => Handler\RegisterHandlerFactory::class,
+                Handler\RegisterSubmitHandler::class => Handler\RegisterSubmitHandlerFactory::class,
                 Handler\ForgotPasswordHandler::class => Handler\ForgotPasswordHandlerFactory::class,
             ],
         ];
