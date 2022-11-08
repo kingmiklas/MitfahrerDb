@@ -24,7 +24,6 @@ class RegisterSubmitHandler implements RequestHandlerInterface
     {
         $pdoHandler = new PDOHandler();
         $pdo = $pdoHandler->create();
-
         /** @var array $credentials */
         $credentials = $request->getParsedBody();
         $password = (string) $credentials['password'];
@@ -38,19 +37,28 @@ class RegisterSubmitHandler implements RequestHandlerInterface
         $nachname = (string) $credentials['nachname'];
         $isSchueler = true;
 
-        $existingEmail = $pdo->query("SELECT cEmail from tUser where cEmail = $email")->fetch();
+        $stmt = $pdo->prepare("SELECT cEmail from tUser where cEmail = :email");
+        $stmt->execute(['email' => $email]);
+        $existingEmail = $stmt->fetch();
 
-        if ($existingEmail === $email){
+        if ($existingEmail === $email) {
             return new HtmlResponse($this->template->render('app::register-page', ['error' => 'Account Existiert bereits']));
         }
 
-        $pdo->query("INSERT INTO tUser (cVorname, cNachname, cEmail,bIsSchueler)
-        VALUES ($vorname,$nachname,$email,$isSchueler)")->execute();
+        $stmt = $pdo->prepare("INSERT INTO tUser (cVorname, cNachname, cEmail,bIsSchueler)
+        VALUES (:vorname,:nachname,:email,:isSchueler)");
+        $stmt->execute(['vorname' => $vorname, 'nachname' => $nachname, 'email' => $email, 'isSchueler' => $isSchueler]);
+        $stmt = $pdo->prepare("SELECT kID FROM tUser where cEmail = :email");
+        $stmt->execute(['email' => $email]);
 
-        $userId = (int)$pdo->query("SELECT kID FROM tUser where cEmail = $email")->fetch();
+        /** @var array $userIdArray */
+        $userIdArray = $stmt->fetch();
+        /** @var int $userId */
+        $userId = $userIdArray[0];
 
-        $pdo->query("INSERT INTO tPasswort (cPassword, kUser)
-        VALUES ($password,$userId)")->execute();
+        $stmt = $pdo->prepare("INSERT INTO tPasswort (cPassword, kUser)
+        VALUES (:password,:userId)");
+        $stmt->execute(['password' => $password, 'userId' => $userId]);
 
         return new HtmlResponse($this->template->render('app::login-page'));
     }
