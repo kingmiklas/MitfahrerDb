@@ -12,17 +12,18 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class LogoutSubmitHandler implements RequestHandlerInterface
 {
-    private ?TemplateRendererInterface  $template;
+    private ?TemplateRendererInterface $template;
 
     public function __construct(
         TemplateRendererInterface $template
     ) {
-        $this->template      = $template;
+        $this->template = $template;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_abort();
+        session_start();
+        $_SESSION['email'] = '';
 
         return new HtmlResponse($this->template->render('app::logout-page'));
     }

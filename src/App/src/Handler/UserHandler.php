@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class BoardHandler implements RequestHandlerInterface
+class UserHandler implements RequestHandlerInterface
 {
     private ?TemplateRendererInterface  $template;
 
@@ -27,6 +27,6 @@ class BoardHandler implements RequestHandlerInterface
             return new HtmlResponse($this->template->render('app::login-page'));
         }
 
-        return new HtmlResponse($this->template->render('app::board-page'));
+        return new HtmlResponse($this->template->render('app::user-page'));
     }
 }

@@ -1,0 +1,38 @@
+<?php $this->layout('layout::authenticated', ['title' => 'user.get']) ?>
+<form action="<?= $this->url('user.post') ?>" method="post">
+    <?php if (isset($error)) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= $this->escapeHtml($error) ?>
+        </div>
+    <?php endif ?>
+    <div class="form-group">
+        <label for="raucher">Raucher</label>
+        <input type="radio" id="raucher" name="raucher" value="ja">Ja</input>
+        <input type="radio" id="raucher" name="raucher" value="nein">Nein</input>
+    </div>
+    <div class="form-group">
+        <label for="tierhaare">Tierhaare</label>
+        <input type="radio" id="tierhaare" name="tierhaare" value="ja">Ja</input>
+        <input type="radio" id="tierhaare" name="tierhaare" value="nein">Nein</input>
+    </div>
+    <div class="form-group">
+        <label for="maskenpflicht">Maskenpflicht</label>
+        <input type="radio" id="maskenpflicht" name="maskenpflicht" value="ja">Ja</input>
+        <input type="radio" id="maskenpflicht" name="maskenpflicht" value="nein">Nein</input>
+    </div>
+    <div class="form-group">
+        <label for="geschlecht">Geschlecht</label>
+        <input type="radio" id="geschlechtM" name="geschlecht" value="M">M</input>
+        <input type="radio" id="geschlechtW" name="geschlecht" value="W">W</input>
+        <input type="radio" id="geschlechtD" name="geschlecht" value="D">D</input>
+    </div>
+    <div class="form-group">
+        <label for="info">Infor zum Fahrer</label>
+        <textarea class="form-control" id="info" rows="3" name="info"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="treffpunkt">Treffpunkt</label>
+        <textarea class="form-control" id="treffpunkt" rows="3" name="treffpunkt"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Speichern</button>
+</form>
