@@ -13,7 +13,7 @@ $this->inlineScript()
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="https://getlaminas.org/images/favicon/favicon.ico" />
-    <?=$this->headTitle('mezzio')->setSeparator(' - ')->setAutoEscape(false)?>
+    <?=$this->headTitle('MitfahrerDB')->setSeparator(' - ')->setAutoEscape(false)?>
     <?=$this->headMeta()?>
     <?=$this->headLink()?>
     <style>
@@ -21,12 +21,12 @@ $this->inlineScript()
         .app { min-height: 100vh; }
         .app-footer { padding-bottom: 1em; }
         .navbar-brand { padding: 0; }
-        .navbar-brand img { margin: -.5rem 0; filter: brightness(0) invert(1); }
+        .navbar-brand img { margin: -.5rem 0;}
     </style>
 </head>
 <body class="app">
 <header class="app-header">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
+    <nav class="navbar navbar-expand-sm navbar-white bg-white fixed-top" role="navigation" style="Border-bottom: 1px solid lightblue">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,29 +34,29 @@ $this->inlineScript()
                 </button>
                 <!-- Brand -->
                 <a class="navbar-brand" href="<?=$this->url('board')?>">
-                    MitfahrerDB
+                    <img width="200" height="60" src="https://www.gso-koeln.de/wp-content/uploads/2020/06/cropped-LOGO-GSO_neu.png" class="custom-logo" alt="Georg-Simon-Ohm-Berufskolleg">
                 </a>
             </div>
             <!-- Links -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="<?=$this->url('board')?>" class="nav-link">
+                        <a href="<?=$this->url('board')?>" class="nav-link text-dark">
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?=$this->url('user.get')?>" class="nav-link">
+                        <a href="<?=$this->url('user.get')?>" class="nav-link text-dark">
                             Profil
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?=$this->url('ride.get')?>" class="nav-link">
+                        <a href="<?=$this->url('ride.get')?>" class="nav-link text-dark">
                             Fahrt Erstellen
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?=$this->url('logout')?>" class="nav-link">
+                        <a href="<?=$this->url('logout')?>" class="nav-link text-dark">
                             Logout
                         </a>
                     </li>
@@ -72,11 +72,11 @@ $this->inlineScript()
     </main>
 </div>
 
-<footer class="app-footer">
+<footer class="app-footer fixed-bottom">
     <div class="container">
         <hr />
         <p>
-            &copy; <?=date('Y')?> <a href="https://getlaminas.org/">Laminas Project</a> a Series of LF Projects, LLC.
+            &copy; <?=date('Y')?> <a href="https://www.gso-koeln.de">GSO</a> Georg-Simon-Ohm Berufskolleg.
         </p>
     </div>
 </footer>
