@@ -45,8 +45,8 @@ Create table if not exists tPostedRides(
     cZielOrt varchar(255) NOT NULL,
     nSitzplaetze int NOT NULL,
     kErsteller int NOT NULL,
+    nPreis int NOT NULL,
     bIsStorniert boolean NOT NULL default false,
-    nPreis int NOT NULL,#Preise sollen nicht to infinity gehen deswegen nur höchsten zweistellinge zahlen (99,99)
     Foreign Key(kErsteller) references tUser(kID),
     Primary Key(kID)
 );
