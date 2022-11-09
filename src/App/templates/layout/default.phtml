@@ -21,12 +21,12 @@ $this->inlineScript()
         .app { min-height: 100vh; }
         .app-footer { padding-bottom: 1em; }
         .navbar-brand { padding: 0; }
-        .navbar-brand img { margin: -.5rem 0; filter: brightness(0) invert(1); }
+        .navbar-brand img { margin: -.5rem 0; object-fit:contain; }
     </style>
 </head>
 <body class="app">
     <header class="app-header">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
+        <nav class="navbar navbar-expand-sm bg-white fixed-top" role="navigation" style="Border-bottom: 1px solid lightblue">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,24 +34,24 @@ $this->inlineScript()
                     </button>
                     <!-- Brand -->
                     <a class="navbar-brand" href="<?=$this->url('login.get')?>">
-                        MitfahrerDB
+                    <img width="200" height="60" src="https://www.gso-koeln.de/wp-content/uploads/2020/06/cropped-LOGO-GSO_neu.png" class="custom-logo" alt="Georg-Simon-Ohm-Berufskolleg">
                     </a>
                 </div>
                 <!-- Links -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="<?=$this->url('register.get')?>" class="nav-link">
+                            <a href="<?=$this->url('register.get')?>" class="nav-link text-dark">
                                  Registrieren
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?=$this->url('login.get')?>" class="nav-link">
+                            <a href="<?=$this->url('login.get')?>" class="nav-link text-dark">
                                 Login
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?=$this->url('password')?>" class="nav-link">
+                            <a href="<?=$this->url('password')?>" class="nav-link text-dark">
                                 Passwort vergessen
                             </a>
                         </li>
@@ -67,11 +67,11 @@ $this->inlineScript()
         </main>
     </div>
 
-    <footer class="app-footer">
+    <footer class="app-footer fixed-bottom">
         <div class="container">
             <hr />
             <p>
-                &copy; <?=date('Y')?> <a href="https://getlaminas.org/">Laminas Project</a> a Series of LF Projects, LLC.
+                 &copy; <?=date('Y')?> <a href="https://www.gso-koeln.de">GSO</a> Georg-Simon-Ohm Berufskolleg.
             </p>
         </div>
     </footer>
