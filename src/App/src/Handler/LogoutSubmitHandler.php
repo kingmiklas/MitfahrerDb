@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class BoardHandler implements RequestHandlerInterface
+class LogoutSubmitHandler implements RequestHandlerInterface
 {
     private ?TemplateRendererInterface  $template;
 
@@ -22,11 +22,8 @@ class BoardHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        session_start();
-        if ($_SESSION['email'] === ''){
-            return new HtmlResponse($this->template->render('app::register-page'));
-        }
+        session_abort();
 
-        return new HtmlResponse($this->template->render('app::board-page'));
+        return new HtmlResponse($this->template->render('app::logout-page'));
     }
 }

@@ -40,6 +40,8 @@ class ConfigProvider
                 Handler\RegisterSubmitHandler::class => Handler\RegisterSubmitHandlerFactory::class,
                 Handler\ForgotPasswordHandler::class => Handler\ForgotPasswordHandlerFactory::class,
                 Handler\BoardHandler::class => Handler\BoardHandlerFactory::class,
+                Handler\LoginSubmitHandler::class => Handler\LoginSubmitHandlerFactory::class,
+                Handler\LogoutSubmitHandler::class => Handler\LogoutSubmitHandlerFactory::class,
             ],
         ];
     }
