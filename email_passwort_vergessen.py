@@ -28,7 +28,7 @@ def random_number(n):
     range_end = (10**n)-1
     return random.randint(range_start, range_end)
 
-def passwort_erstellung(cnx,name):
+def passwort_erstellung():
     
     randomnumber = random_number(7)
     
@@ -53,5 +53,5 @@ args = sys.argv[1:]
 args[0] = args[0].lower()
 
 cnx = verbindungsaufbau()
-randomnumber = passwort_erstellung(cnx)
+randomnumber = passwort_erstellung()
 send_mail(randomnumber,*args)
