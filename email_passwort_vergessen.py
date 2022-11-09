@@ -28,22 +28,15 @@ def random_number(n):
     range_end = (10**n)-1
     return random.randint(range_start, range_end)
 
-def passwort_vergessen(cnx,name):
-
-    cur = cnx.cursor()
-    cur.execute(f"SELECT u.cemail FROM tuser u WHERE u.kid = {name}")
-    row = cur.fetchall()
-    liste = []
-    for i in range(len(row)):
-        liste.append(str(*row[i]))
+def passwort_erstellung(cnx,name):
     
     randomnumber = random_number(7)
     
-    return randomnumber,liste
+    return randomnumber
     
-def send_mail(randomnumber,liste):
+def send_mail(randomnumber,name):
     
-    receiver_email = liste
+    receiver_email = name
 
     msg = EmailMessage()
     msg.set_content(f"Ihr neues Passwaort lautet: {randomnumber}")
@@ -60,5 +53,5 @@ args = sys.argv[1:]
 args[0] = args[0].lower()
 
 cnx = verbindungsaufbau()
-randomnumber,liste = passwort_vergessen(cnx,*args)
-send_mail(randomnumber,liste)
+randomnumber = passwort_erstellung(cnx)
+send_mail(randomnumber,*args)
