@@ -35,16 +35,17 @@ class RegisterSubmitHandler implements RequestHandlerInterface
         $email = (string) $credentials['email'];
         $vorname = (string) $credentials['vorname'];
         $nachname = (string) $credentials['nachname'];
-        $isSchueler = true;
-
+        $isSchueler = (bool)preg_match("/([a-z]*\.[a-z]{1}[1-9]{0,4})(@gso\.schule\.koeln)/s",$email);
         $stmt = $pdo->prepare("SELECT cEmail from tUser where cEmail = :email");
         $stmt->execute(['email' => $email]);
-        $existingEmail = $stmt->fetch();
-
+        $existingEmailArray = $stmt->fetch();
+        $existingEmail = '';
+        if (is_array($existingEmailArray)){
+            $existingEmail = (string)$existingEmailArray[0];
+        }
         if ($existingEmail === $email) {
             return new HtmlResponse($this->template->render('app::register-page', ['error' => 'Account Existiert bereits']));
         }
-
         $stmt = $pdo->prepare("INSERT INTO tUser (cVorname, cNachname, cEmail,bIsSchueler)
         VALUES (:vorname,:nachname,:email,:isSchueler)");
         $stmt->execute(['vorname' => $vorname, 'nachname' => $nachname, 'email' => $email, 'isSchueler' => $isSchueler]);
@@ -53,8 +54,7 @@ class RegisterSubmitHandler implements RequestHandlerInterface
 
         /** @var array $userIdArray */
         $userIdArray = $stmt->fetch();
-        /** @var int $userId */
-        $userId = $userIdArray[0];
+        $userId = (int)$userIdArray[0];
 
         $stmt = $pdo->prepare("INSERT INTO tPasswort (cPassword, kUser)
         VALUES (:password,:userId)");
