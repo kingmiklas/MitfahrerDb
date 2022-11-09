@@ -28,9 +28,15 @@ def random_number(n):
     range_end = (10**n)-1
     return random.randint(range_start, range_end)
 
-def passwort_erstellung():
-    
+def passwort_eintragen(cnx,name):
+
     randomnumber = random_number(7)
+    
+    cur = cnx.cursor()
+    try:
+        cur.execute(f"update mitfahrerdb.tpasswort p, mitfahrerdb.tuser u set cpassword = {randomnumber} where p.kuser = u.kid and u.cemail = '{name}'")
+    except:
+        print(name)
     
     return randomnumber
     
@@ -53,5 +59,5 @@ args = sys.argv[1:]
 args[0] = args[0].lower()
 
 cnx = verbindungsaufbau()
-randomnumber = passwort_erstellung()
+randomnumber = passwort_eintragen(cnx,*args)
 send_mail(randomnumber,*args)
