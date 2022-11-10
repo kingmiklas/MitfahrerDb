@@ -52,4 +52,5 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->post('/join', App\Handler\JoinRideHandler::class, 'join.post');
     $app->post('/register', App\Handler\RegisterSubmitHandler::class, 'register.post');
     $app->get('/password', App\Handler\ForgotPasswordHandler::class, 'password');
+    $app->post('/password', App\Handler\ForgotPasswordHandler::class, 'password.post');
 };

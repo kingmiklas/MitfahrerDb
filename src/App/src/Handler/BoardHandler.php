@@ -38,7 +38,7 @@ class BoardHandler implements RequestHandlerInterface
         $method = $request->getMethod();
         if ($method === 'POST') {
             $sql = "select pr.* from mitfahrerdb.tuser u, mitfahrerdb.tpostedrides pr 
-            where u.kid = pr.kErsteller and u.bIsSchueler = :isSchueler";
+            where u.kid = pr.kErsteller and u.bIsSchueler = :isSchueler and p.bIsStorniert = 0";
             /** @var array $credentials */
             $credentials = $request->getParsedBody();
             if ($credentials !== []) {
@@ -53,7 +53,7 @@ class BoardHandler implements RequestHandlerInterface
                 }
             }
         } else {
-            $sql = "SELECT p.* from tPostedRides as p join tUser as u On(p.kErsteller = u.kID) where u.bIsSchueler = :isSchueler";
+            $sql = "SELECT p.* from tPostedRides as p join tUser as u On(p.kErsteller = u.kID) where u.bIsSchueler = :isSchueler and p.bIsStorniert = 0";
         }
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['isSchueler' => $isSchueler]);
