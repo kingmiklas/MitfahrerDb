@@ -18,7 +18,7 @@ password = "fqosompobdatpbpv"
 #password = "apcmcdggunpglljy"
 
 def verbindungsaufbau():
-    cnx = mysql.connector.connect(user='root', password='', host='localhost', database='MitfahrerDB')
+    cnx = mysql.connector.connect(user='root', password='', host='localhost', database='MitfahrerDB', port = 3329)
     
     return cnx
     
