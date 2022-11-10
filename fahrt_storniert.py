@@ -9,19 +9,17 @@ from email.message import EmailMessage
 port = 465  # For SSL
 smtp_server = "smtp.gmail.com"
 sender_email = "mitfahrerdb@gmail.com"  # Enter your address
-#ausführendes Gerät
+#ausfuehrendes Geraet
 
 #Windows-Computer
-password = "fqosompobdatpbpv" 
+#password = "fqosompobdatpbpv"
 
 #Mac
-#password = "apcmcdggunpglljy"
-
+password = "apcmcdggunpglljy"
 def verbindungsaufbau():
     cnx = mysql.connector.connect(user='root', password='', host='localhost', database='MitfahrerDB', port = 3329)
-    
+
     return cnx
-    
 
 def fahrt_storniert(cnx,name):
 
@@ -34,7 +32,6 @@ def fahrt_storniert(cnx,name):
     
     return liste
 
-    
 def send_mail(liste):
     
     receiver_email = liste

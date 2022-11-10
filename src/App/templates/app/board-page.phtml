@@ -6,7 +6,7 @@
     <?php
     $url = $this->url('board.post');
     $board = $this->url('board');
-    echo '<form style="width: 12rem;" action="' . $url . '" method="post">
+    echo '<form action="' . $url . '" method="post">
 <div class="form-group">
         <label for="raucher">Raucher</label>
         <input type="radio" id="raucher" name="bRaucher" value="1">Ja</input>
@@ -28,15 +28,15 @@
         <input type="radio" id="geschlechtW" name="bGeschlecht" value="W">W</input>
         <input type="radio" id="geschlechtD" name="bGeschlecht" value="D">D</input>
     </div>
-        <div class="pt-1 mb-4">
+        <div class="pt-1 mb-4 btn-group">
             <button type="submit" class="btn btn-primary btn-lg">Filter Anwenden</button>
-        </div>
-    </form>
-    <button>
+            <button class="btn btn-danger btn-lg>
     <a href="'. $board .'" class="nav-link text-dark">
                                  Filter Zurücksetzen
                             </a>
-                            </button>'
+                            </button>
+        </div>
+    </form>'
     ?>
     <table class="table table-hover">
         <?php

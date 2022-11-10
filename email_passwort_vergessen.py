@@ -13,10 +13,10 @@ sender_email = "mitfahrerdb@gmail.com"  # Enter your address
 #ausführendes Gerät
 
 #Windows-Computer
-password = "fqosompobdatpbpv" 
+#password = "fqosompobdatpbpv"
 
 #Mac
-#password = "apcmcdggunpglljy"
+password = "apcmcdggunpglljy"
 
 def verbindungsaufbau():
     cnx = mysql.connector.connect(user='root', password='', host='localhost', database='MitfahrerDB', port = 3329)

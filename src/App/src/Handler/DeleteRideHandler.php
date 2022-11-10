@@ -18,7 +18,7 @@ class DeleteRideHandler implements RequestHandlerInterface
     public function __construct(
         TemplateRendererInterface $template
     ) {
-        $this->template      = $template;
+        $this->template = $template;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -33,10 +33,12 @@ class DeleteRideHandler implements RequestHandlerInterface
         $pdo = $pdoHandler->create();
         /** @var array $credentials */
         $credentials = $request->getParsedBody();
-        $rideId = (int)$credentials['rideId'];
+        $rideId = (int) $credentials['rideId'];
 
-        $stmt = $pdo->prepare("DELETE FROM tPostedRides where kID = :rideId");
+        $stmt = $pdo->prepare("UPDATE tPostedRides SET bIsStorniert=1 where kID = :rideId");
         $stmt->execute(['rideId' => $rideId]);
+
+        shell_exec('python3 '.__DIR__ . '/../../../../fahrt_storniert.py' . " $rideId");
 
         return new RedirectResponse('/board');
     }

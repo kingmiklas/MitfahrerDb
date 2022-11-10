@@ -17,11 +17,19 @@ class ForgotPasswordHandler implements RequestHandlerInterface
     public function __construct(
         TemplateRendererInterface $template
     ) {
-        $this->template      = $template;
+        $this->template = $template;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $method = $request->getMethod();
+        if ($method === 'POST') {
+            /** @var array $credentials */
+            $credentials = $request->getParsedBody();
+            $email = (string)$credentials['email'];
+            shell_exec('python3 '.__DIR__ . '/../../../../email_passwort_vergessen.py' . " $email");
+        }
+
         return new HtmlResponse($this->template->render('app::password-page'));
     }
 }
