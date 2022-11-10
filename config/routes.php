@@ -43,6 +43,7 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/logout', App\Handler\LogoutSubmitHandler::class, 'logout');
     $app->get('/register', App\Handler\RegisterHandler::class, 'register.get');
     $app->get('/board', App\Handler\BoardHandler::class, 'board');
+    $app->post('/board', App\Handler\BoardHandler::class, 'board.post');
     $app->get('/user', App\Handler\UserHandler::class, 'user.get');
     $app->post('/user', App\Handler\UserSubmitHandler::class, 'user.post');
     $app->get('/ride', App\Handler\RideHandler::class, 'ride.get');

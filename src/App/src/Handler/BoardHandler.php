@@ -23,41 +23,66 @@ class BoardHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         session_start();
-        $fahrerEmail = $_SESSION['email'];
-        if ($fahrerEmail === '') {
+        $sessionEmail = $_SESSION['email'];
+        if ($sessionEmail === '') {
             return new HtmlResponse($this->template->render('app::login-page'));
         }
 
         $pdoHandler = new PDOHandler();
         $pdo = $pdoHandler->create();
 
-        $stmt = $pdo->query("SELECT * from tPostedRides");
+        $stmt = $pdo->prepare("SELECT bIsSchueler from tUser where cEmail = :email");
+        $stmt->execute(['email' => $sessionEmail]);
+        $isSchueler = (int) $stmt->fetch()[0];
+
+        $method = $request->getMethod();
+        if ($method === 'POST') {
+            $sql = "select pr.* from mitfahrerdb.tuser u, mitfahrerdb.tpostedrides pr 
+            where u.kid = pr.kErsteller and u.bIsSchueler = :isSchueler";
+            /** @var array $credentials */
+            $credentials = $request->getParsedBody();
+            if ($credentials !== []) {
+                /** @var string $key */
+                /** @var int $filter */
+                foreach ($credentials as $key => $filter) {
+                    if ($key === 'bGeschlecht'){
+                        $sql .= " and u." . $key . "=" . "'$filter'";
+                        continue;
+                    }
+                    $sql .= ' and u.' . $key . '=' . $filter;
+                }
+            }
+        } else {
+            $sql = "SELECT p.* from tPostedRides as p join tUser as u On(p.kErsteller = u.kID) where u.bIsSchueler = :isSchueler";
+        }
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['isSchueler' => $isSchueler]);
         $rides = $stmt->fetchAll();
 
         foreach ($rides as $key => $ride) {
-            $fahrtStorniert = (bool)$ride['bIsStorniert'];
-            if($fahrtStorniert){
+            $fahrtStorniert = (bool) $ride['bIsStorniert'];
+            if ($fahrtStorniert) {
                 unset($rides[$key]);
             }
 
             $stmt = $pdo->prepare("SELECT Count(kUser) from tUserRides where kRide =:ersteller");
             $stmt->execute(['ersteller' => $ride['kID']]);
-            $mitfahrerCount = (int)$stmt->fetch()[0];
+            $mitfahrerCount = (int) $stmt->fetch()[0];
 
             $stmt = $pdo->prepare("SELECT cEmail from tUser where kID =:ersteller");
-            $stmt->execute(['ersteller' => (int)$ride['kErsteller']]);
+            $stmt->execute(['ersteller' => (int) $ride['kErsteller']]);
             $email = $stmt->fetch()[0];
 
             $ride['email'] = $email;
-            $freieSitzplaetze = (int)$ride['nSitzplaetze'] - $mitfahrerCount;
-            if ($freieSitzplaetze === 0){
+            $freieSitzplaetze = (int) $ride['nSitzplaetze'] - $mitfahrerCount;
+            if ($freieSitzplaetze === 0) {
                 unset($rides[$key]);
                 continue;
             }
 
             $ride['freieSitzplaetze'] = $freieSitzplaetze;
 
-            $ride['sessionEmail'] = $fahrerEmail;
+            $ride['sessionEmail'] = $sessionEmail;
 
             $rides[$key] = $ride;
         }
