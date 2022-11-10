@@ -1,6 +1,48 @@
 <?php $this->layout('layout::authenticated', ['title' => 'Board']) ?>
 <div class="container">
     <div class="row">
-        <h1>Dashboard</h1>
+        <h1>Hier sehen sie alle verfügbaren Fahrten</h1>
     </div>
+    <table class="table table-hover">
+        <?php
+        try {
+            if ($rides !== null) {
+                foreach ($rides as $ride) {
+                    $email = $ride['email'];
+                    echo '<tr>';
+                    echo '<td>' . $email . '</td>';
+                    echo '<td>' . $ride['dDatumUhrzeit'] . '</td>';
+                    echo '<td>' . $ride['cStartOrt'] . '</td>';
+                    echo '<td>' . $ride['cZielOrt'] . '</td>';
+                    echo '<td>' . $ride['freieSitzplaetze'] . '</td>';
+                    echo '<td>' . $ride['nPreis'] . 'EUR <br>' . '</td>';
+                    if ($email === $ride['sessionEmail']) {
+                        $url = $this->url('delete.post');
+                        echo '<td> 
+                    <form style="width: 12rem;" action="' . $url . '" method="post">
+                    <input type="hidden" name="rideId" value="' . $ride['kID'] . '">
+                    <div class="pt-1 mb-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Fahrt löschen</button>
+                    </div>
+                    </form>
+                    </td>';
+                    } else {
+                        $url = $this->url('join.post');
+                        echo '<td> 
+                    <form style="width: 12rem;" action="' . $url . '" method="post">
+                    <input type="hidden" name="rideId" value="' . $ride['kID'] . '">
+                    <div class="pt-1 mb-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Fahrt beitreten</button>
+                    </div>
+                    </form>
+                    </td>';
+                    }
+                    echo '</tr>';
+                }
+            }
+        } catch (Exception $exception) {
+            var_dump($exception);
+        }
+        ?>
+    </table>
 </div>

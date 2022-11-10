@@ -45,6 +45,8 @@ class ConfigProvider
                 Handler\LogoutSubmitHandler::class => Handler\LogoutSubmitHandlerFactory::class,
                 Handler\UserHandler::class => Handler\UserHandlerFactory::class,
                 Handler\RideHandler::class => Handler\RideHandlerFactory::class,
+                Handler\JoinRideHandler::class => Handler\JoinRideHandlerFactory::class,
+                Handler\DeleteRideHandler::class => Handler\DeleteRideHandlerFactory::class,
                 Handler\RideSubmitHandler::class => Handler\RideSubmitHandlerFactory::class,
             ],
         ];

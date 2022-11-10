@@ -47,6 +47,8 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->post('/user', App\Handler\UserSubmitHandler::class, 'user.post');
     $app->get('/ride', App\Handler\RideHandler::class, 'ride.get');
     $app->post('/ride', App\Handler\RideSubmitHandler::class, 'ride.post');
+    $app->post('/delete', App\Handler\DeleteRideHandler::class, 'delete.post');
+    $app->post('/join', App\Handler\JoinRideHandler::class, 'join.post');
     $app->post('/register', App\Handler\RegisterSubmitHandler::class, 'register.post');
     $app->get('/password', App\Handler\ForgotPasswordHandler::class, 'password');
 };

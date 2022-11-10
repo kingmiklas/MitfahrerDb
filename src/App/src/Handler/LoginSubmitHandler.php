@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\RedirectResponse;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,7 +37,7 @@ class LoginSubmitHandler implements RequestHandlerInterface
             $_SESSION['isSchueler'] = (bool)$existingUserArray['bIsSchueler'];
             $_SESSION['email'] = $email;
 
-            return new HtmlResponse($this->template->render('app::board-page'));
+            return new RedirectResponse('/board');
         }
 
         return new HtmlResponse($this->template->render('app::login-page',['error' => 'User existiert nicht']));
