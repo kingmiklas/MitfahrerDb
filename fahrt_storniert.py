@@ -26,7 +26,7 @@ def verbindungsaufbau():
 def fahrt_storniert(cnx,name):
 
     cur = cnx.cursor()
-    cur.execute(f"SELECT u.cemail FROM tPostedRides pr, tuser u, tuserrides ur WHERE pr.kid = ur.kride and ur.kuser = u.kid and pr.kid = {name} and pr.bisstorniert = 1")
+    cur.execute(f"SELECT u.cemail FROM tPostedRides pr, tuser u, tuserrides ur WHERE pr.kid = ur.kride and ur.kuser = u.kid and pr.kid = {name}")
     row = cur.fetchall()
     liste = []
     for i in range(len(row)):
