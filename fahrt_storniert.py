@@ -20,11 +20,11 @@ def verbindungsaufbau():
     cnx = mysql.connector.connect(user='root', password='', host='localhost', database='MitfahrerDB', port = 3329)
 
     return cnx
-    
+
 def fahrt_storniert(cnx,name):
 
     cur = cnx.cursor()
-    cur.execute("SELECT u.cEmail FROM tPostedRides pr, tuser u, tuserrides ur WHERE pr.kID = ur.kRide and ur.kUser = u.kID and pr.kID = "+name+" and pr.bIsStorniert = 1;")
+    cur.execute(f"SELECT u.cemail FROM tPostedRides pr, tuser u, tuserrides ur WHERE pr.kid = ur.kride and ur.kuser = u.kid and pr.kid = {name}")
     row = cur.fetchall()
     liste = []
     for i in range(len(row)):
