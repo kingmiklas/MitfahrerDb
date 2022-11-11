@@ -37,8 +37,7 @@ class BoardHandler implements RequestHandlerInterface
 
         $method = $request->getMethod();
         if ($method === 'POST') {
-            $sql = "select pr.* from mitfahrerdb.tuser u, mitfahrerdb.tpostedrides pr 
-            where u.kid = pr.kErsteller and u.bIsSchueler = :isSchueler and p.bIsStorniert = 0";
+            $sql = "SELECT p.* from tPostedRides as p join tUser as u On(p.kErsteller = u.kID) where u.kid = p.kErsteller and u.bIsSchueler = :isSchueler and p.bIsStorniert = 0";
             /** @var array $credentials */
             $credentials = $request->getParsedBody();
             if ($credentials !== []) {

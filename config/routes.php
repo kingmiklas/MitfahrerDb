@@ -53,5 +53,7 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->post('/register', App\Handler\RegisterSubmitHandler::class, 'register.post');
     $app->get('/password', App\Handler\ForgotPasswordHandler::class, 'password');
     $app->get('/agb', App\Handler\AGBHandler::class, 'agb');
+    $app->get('/book', App\Handler\BookHandler::class, 'handbuch');
+    $app->get('/loggedbook', App\Handler\BookHandler::class, 'logged-handbuch');
     $app->post('/password', App\Handler\ForgotPasswordHandler::class, 'password.post');
 };

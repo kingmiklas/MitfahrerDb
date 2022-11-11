@@ -40,7 +40,7 @@ class RegisterSubmitHandler implements RequestHandlerInterface
 
         $vorname = (string) $credentials['vorname'];
         $nachname = (string) $credentials['nachname'];
-        $isSchueler = (bool) preg_match("/([a-z]*\.[a-z]{1}[1-9]{0,4})(@gso\.schule\.koeln)/s", $email);
+        $isSchueler = (int) preg_match("/([a-z]*\.[a-z]{1}[1-9]{0,4})(@gso\.schule\.koeln)/s", $email);
         $stmt = $pdo->prepare("SELECT cEmail from tUser where cEmail = :email");
         $stmt->execute(['email' => $email]);
         $existingEmailArray = $stmt->fetch();

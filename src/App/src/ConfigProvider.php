@@ -49,6 +49,7 @@ class ConfigProvider
                 Handler\DeleteRideHandler::class => Handler\DeleteRideHandlerFactory::class,
                 Handler\RideSubmitHandler::class => Handler\RideSubmitHandlerFactory::class,
                 Handler\AGBHandler::class => Handler\AGBHandlerFactory::class,
+                Handler\BookHandler::class => Handler\BookHandlerFactory::class,
             ],
         ];
     }

@@ -39,6 +39,13 @@ class JoinRideHandler implements RequestHandlerInterface
         $stmt->execute(['email' => $sessionEmail]);
         $userId = (int) $stmt->fetch()[0];
 
+        $stmt = $pdo->prepare("SELECT true from tUserRides where kRide = :rideId and kUser = :userId");
+        $stmt->execute(['rideId' => $rideId, 'userId' => $userId]);
+        $alreadyJoinedRide = (int)$stmt->fetch();
+        if ($alreadyJoinedRide === 1){
+            return new RedirectResponse('/board');
+        }
+
         $stmt = $pdo->prepare("INSERT INTO tUserRides (kRide, kUser)
         VALUES (:rideId,:userId)");
         $stmt->execute(['rideId' => $rideId, 'userId' => $userId]);
