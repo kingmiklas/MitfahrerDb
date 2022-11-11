@@ -34,7 +34,8 @@ def passwort_eintragen(cnx,name):
     
     cur = cnx.cursor()
     try:
-        cur.execute(f"update mitfahrerdb.tpasswort p, mitfahrerdb.tuser u set cpassword = {randomnumber} where p.kuser = u.kid and u.cemail = '{name}'")
+        cur.execute(f"update mitfahrerdb.tpasswort p set p.cpassword = '{randomnumber}' where p.kuser = (select kID from tuser where cemail = '{name}' limit 1)")
+        cnx.commit()
     except:
         print(name)
     
