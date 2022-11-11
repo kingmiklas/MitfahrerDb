@@ -50,6 +50,7 @@ class ConfigProvider
                 Handler\RideSubmitHandler::class => Handler\RideSubmitHandlerFactory::class,
                 Handler\AGBHandler::class => Handler\AGBHandlerFactory::class,
                 Handler\BookHandler::class => Handler\BookHandlerFactory::class,
+                Handler\LoggedBookHandler::class => Handler\LoggedBookHandlerFactory::class,
             ],
         ];
     }
