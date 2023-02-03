@@ -46,6 +46,8 @@
         "php": "^7.4 || ~8.0.0 || ~8.1.0",
         "ext-pdo": "*",
         "composer/package-versions-deprecated": "^1.10.99",
+        "doctrine/migrations": "^3.5",
+        "doctrine/orm": "^2.14",
         "jsoumelidis/zend-sf-di-config": "^0.5.1",
         "laminas/laminas-component-installer": "^2.6",
         "laminas/laminas-config-aggregator": "^1.6",
@@ -67,7 +69,8 @@
         "mezzio/mezzio-helpers": "^5.7",
         "mezzio/mezzio-laminasrouter": "^3.0.1",
         "mezzio/mezzio-laminasviewrenderer": "^2.2",
-        "mezzio/mezzio-router": "^3.9"
+        "mezzio/mezzio-router": "^3.9",
+        "symfony/cache": "^6.2"
     },
     "require-dev": {
         "laminas/laminas-development-mode": "^3.3.0",
