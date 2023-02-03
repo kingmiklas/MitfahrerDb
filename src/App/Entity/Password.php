@@ -18,7 +18,7 @@ final class Password
     #[ORM\Column(length: 11)]
     private int $id;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cPassword')]
     private string $password;
 
     #[ORM\OneToOne]

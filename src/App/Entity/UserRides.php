@@ -18,10 +18,11 @@ final class UserRides
     #[ORM\Column(length: 11)]
     private int $id;
 
-    #[ORM\Column]
-    private PostedRides $postedRides;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn]
+    private PostedRides $ride;
 
-    #[ORM\OneToOne]
+    #[ORM\ManyToMany]
     #[ORM\JoinColumn]
     private User $user;
 

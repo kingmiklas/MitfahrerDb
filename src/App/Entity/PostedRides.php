@@ -19,26 +19,26 @@ final class PostedRides
     #[ORM\Column(length: 11)]
     private int $id;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'dDatumUhrzeit')]
     private Datetime $datetime;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cStartOrt')]
     private string $start;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cZielOrt')]
     private string $end;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'nSitzplaetze')]
     private int $seats;
 
     #[ORM\ManyToOne]
     #[ORM\Column]
     private User $creater;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'nPreis')]
     private int $price;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'bIsStorniert')]
     private bool $canceled;
 
     public function __construct(

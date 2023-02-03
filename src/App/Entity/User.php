@@ -18,62 +18,62 @@ final class User
     #[ORM\Column(length: 11)]
     private int $id;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cVorname')]
     private string $firstName;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cNachname')]
     private string $lastName;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cEmail')]
     private string $email;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'bIsSchueler')]
     private bool $isStudent;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'bRaucher')]
     private bool $isSmoker;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'bTierhaare')]
     private bool $hasAnimals;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'bMaskenpflicht')]
     private bool $maskRequired;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'bGeschlecht')]
     private string $gender;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cFreiInfo')]
     private string $info;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'cHeimatsTreffpunkt')]
     private string $meetingPoint;
 
     #[ORM\OneToMany]
     #[ORM\JoinColumn]
-    private $postedRides;
+    private PostedRides $postedRides;
 
     #[ORM\OneToOne]
     #[ORM\JoinColumn]
-    private $password;
+    private Password $password;
 
-    #[ORM\OneToOne]
+    #[ORM\ManyToMany]
     #[ORM\JoinColumn]
-    private $userRides;
+    private UserRides $userRides;
 
     public function __construct(
-        string $firstName,
-        string $lastName,
-        string $email,
-        bool   $isStudent,
-        bool   $isSmoker,
-        bool   $hasAnimals,
-        bool   $maskRequired,
-        string $gender,
-        string $info,
-        string $meetingPoint,
-               $postedRides,
-               $password,
-               $userRides
+        string      $firstName,
+        string      $lastName,
+        string      $email,
+        bool        $isStudent,
+        bool        $isSmoker,
+        bool        $hasAnimals,
+        bool        $maskRequired,
+        string      $gender,
+        string      $info,
+        string      $meetingPoint,
+        PostedRides $postedRides,
+        Password    $password,
+        UserRides   $userRides
     ) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -190,33 +190,34 @@ final class User
         $this->meetingPoint = $meetingPoint;
     }
 
-    public function getPostedRides()
+    public function getPostedRides(): PostedRides
     {
         return $this->postedRides;
     }
 
-    public function setPostedRides($postedRides): void
+    public function setPostedRides(PostedRides $postedRides): void
     {
         $this->postedRides = $postedRides;
     }
 
-    public function getPassword()
+    public function getPassword(): Password
     {
         return $this->password;
     }
 
-    public function setPassword($password): void
+    public function setPassword(Password $password): void
     {
         $this->password = $password;
     }
 
-    public function getUserRides()
+    public function getUserRides(): UserRides
     {
         return $this->userRides;
     }
 
-    public function setUserRides($userRides): void
+    public function setUserRides(UserRides $userRides): void
     {
         $this->userRides = $userRides;
     }
+
 }
