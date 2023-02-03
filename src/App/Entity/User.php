@@ -48,16 +48,13 @@ final class User
     #[ORM\Column(name: 'cHeimatsTreffpunkt')]
     private string $meetingPoint;
 
-    #[ORM\OneToMany]
-    #[ORM\JoinColumn]
+    #[ORM\OneToMany(mappedBy: 'tUser', targetEntity: PostedRides::class, cascade: ['persist','remove'], fetch: 'EXTRA_LAZY')]
     private PostedRides $postedRides;
 
-    #[ORM\OneToOne]
-    #[ORM\JoinColumn]
+    #[ORM\OneToOne(mappedBy: 'tUser', targetEntity: Password::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     private Password $password;
 
-    #[ORM\ManyToMany]
-    #[ORM\JoinColumn]
+    #[ORM\OneToMany(mappedBy: 'tUser',targetEntity: UserRides::class,cascade: ['persist','remove'], fetch: 'EXTRA_LAZY')]
     private UserRides $userRides;
 
     public function __construct(

@@ -18,15 +18,15 @@ final class UserRides
     #[ORM\Column(length: 11)]
     private int $id;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn]
+    #[ORM\ManyToOne(targetEntity: PostedRides::class, cascade: ['persist'], inversedBy: 'id')]
+    #[ORM\JoinColumn(name: 'kRide', onDelete: 'cascade')]
     private PostedRides $ride;
 
-    #[ORM\ManyToMany]
-    #[ORM\JoinColumn]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist'], inversedBy: 'id')]
+    #[ORM\JoinColumn(name: 'kUser', onDelete: 'cascade')]
     private User $user;
 
-    public function __construct( PostedRides $postedRides, User $user)
+    public function __construct(PostedRides $postedRides, User $user)
     {
         $this->postedRides = $postedRides;
         $this->user = $user;

@@ -31,8 +31,8 @@ final class PostedRides
     #[ORM\Column(name: 'nSitzplaetze')]
     private int $seats;
 
-    #[ORM\ManyToOne]
-    #[ORM\Column]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist'], inversedBy:'postedRides')]
+    #[ORM\JoinColumn(name: 'kErsteller', onDelete: 'cascade')]
     private User $creater;
 
     #[ORM\Column(name: 'nPreis')]

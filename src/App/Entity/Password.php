@@ -21,8 +21,8 @@ final class Password
     #[ORM\Column(name: 'cPassword')]
     private string $password;
 
-    #[ORM\OneToOne]
-    #[ORM\JoinColumn]
+    #[ORM\OneToOne(inversedBy: 'password', targetEntity: User::class, cascade: ['persist'], fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'kUser', onDelete: 'cascade')]
     private User $user;
 
     public function __construct(string $password, User $user)
