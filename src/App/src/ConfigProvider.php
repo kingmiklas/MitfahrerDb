@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Migration\ConfigurationFactory;
+use Doctrine\Migrations\Configuration\Configuration;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Roave\PsrContainerDoctrine\EntityManagerFactory;
+
 /**
  * The configuration provider for the App module
  *
@@ -35,6 +41,7 @@ class ConfigProvider
                 Handler\PDOHandler::class => Handler\PDOHandler::class,
             ],
             'factories'  => [
+                EntityManager::class => EntityManagerFactory::class,
                 Handler\LoginHandler::class => Handler\LoginHandlerFactory::class,
                 Handler\RegisterHandler::class => Handler\RegisterHandlerFactory::class,
                 Handler\RegisterSubmitHandler::class => Handler\RegisterSubmitHandlerFactory::class,
@@ -51,7 +58,11 @@ class ConfigProvider
                 Handler\AGBHandler::class => Handler\AGBHandlerFactory::class,
                 Handler\BookHandler::class => Handler\BookHandlerFactory::class,
                 Handler\LoggedBookHandler::class => Handler\LoggedBookHandlerFactory::class,
+                Configuration::class => ConfigurationFactory::class,
             ],
+            'aliases' => [
+                EntityManagerInterface::class => EntityManager::class,
+            ]
         ];
     }
 

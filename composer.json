@@ -70,6 +70,7 @@
         "mezzio/mezzio-laminasrouter": "^3.0.1",
         "mezzio/mezzio-laminasviewrenderer": "^2.2",
         "mezzio/mezzio-router": "^3.9",
+        "roave/psr-container-doctrine": "^3.6",
         "symfony/cache": "^6.2"
     },
     "require-dev": {

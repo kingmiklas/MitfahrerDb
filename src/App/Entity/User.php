@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gender;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -39,8 +40,8 @@ final class User
     #[ORM\Column(name: 'bMaskenpflicht')]
     private bool $maskRequired;
 
-    #[ORM\Column(name: 'bGeschlecht')]
-    private string $gender;
+    #[ORM\Column(enumType: Gender::class)]
+    private Gender $gender;
 
     #[ORM\Column(name: 'cFreiInfo')]
     private string $info;
@@ -65,7 +66,7 @@ final class User
         bool        $isSmoker,
         bool        $hasAnimals,
         bool        $maskRequired,
-        string      $gender,
+        Gender      $gender,
         string      $info,
         string      $meetingPoint,
         PostedRides $postedRides,
@@ -157,12 +158,12 @@ final class User
         $this->maskRequired = $maskRequired;
     }
 
-    public function getGender(): string
+    public function getGender(): Gender
     {
         return $this->gender;
     }
 
-    public function setGender(string $gender): void
+    public function setGender(Gender $gender): void
     {
         $this->gender = $gender;
     }
